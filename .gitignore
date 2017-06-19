@@ -1,0 +1,4 @@
+.DS_Store
+books/migrations/__pycache__
+books/__pycache__
+simpleproject/__pycache__
