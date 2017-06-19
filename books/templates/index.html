@@ -1,0 +1,18 @@
+Your Library of Books
+
+  <a href="add.html">Add book</a>
+{% if lql %}
+
+
+
+<ul>
+ {% for book in lql %}
+<li><a href="{% url 'simpleapp:detail' book.id %}">{{book.title}}: Details</a> <a href="{% url 'simpleapp:books_update_form' book.id %}"> Update</a><a href="{% url 'simpleapp:book_confirm_delete' book.id %}">      Delete</a>
+</li>
+
+{% endfor %}
+</ul>
+
+ {% else %}
+ <p>You don't have any books.</p>
+   {% endif %}
