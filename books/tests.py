@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 # browser.get('http://google.com')
 # browser.quit()
 
-# Create your tests here.
+ 
 from .models import Book
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -95,7 +95,7 @@ class AdminTestCase(LiveServerTestCase):
         self.assertIn('No', p.text)
 
 
- 
+
 
 class BookTestCase(TestCase):
     def setUp(self):
