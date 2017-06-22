@@ -1,9 +1,10 @@
 language: python
 python: '3.6'
 
+before_install:
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost
 
 
 install:
 - pip3 install -r requirements.txt
 script: python3 manage.py test
- 
