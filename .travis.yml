@@ -2,9 +2,9 @@ language: python
 python: '3.6'
 
 
-before_install:
-  -export SECRET_KEY= env.global.securec=simpleproject.settings
-  
+# before_install:
+  # -export SECRET_KEY= env.global.securec=simpleproject.settings
+
 install:
 - pip3 install -r requirements.txt
 script: python3 manage.py test
