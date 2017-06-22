@@ -1,6 +1,8 @@
 language: python
-python: "3.6"
-
+python: '3.6'
 install:
-  - pip3 install -r requirements.txt
+- pip3 install -r requirements.txt
 script: python3 manage.py test
+env:
+  global:
+    secure: AguNJXZJXy6wTggh31BStGhghDTYt+po1PEEL1C3kKX3WxEDDmL9cQULctzjVOxsQXm3Y/kJI5OjXkI6qf0SvkaeMMMto4YK2T1E8A4M9enulbwytsiyYmxM1V0Q+DqgVpHyZjjtgqBp5XVthb0X4NMwN+/9POep2a+U7kte7/9AhIMAANTscR0oXvnK8vVSyZ1Fd22KJWAyn1y1+G2tYcRWvdmitM7XNZQLPAvo7t/1IyobYHB6K0772LcyZaJ3wOg1PPYGQMokMeCsFIjwATZ7o/rxZ0R6Gr/K0mvjAVMEvN7R20w+LOYQBj5To+YogBrpvbt7+k7UrSJtWaz1/CkOIlTIRqQfctKqYUVSPpElP1/h9e31qVTSYRcLBfz6mmZ8NEk/mUovkAvvTzdbDYGtataFeUhjWPtjN6WJCR8OiLABVbVkOYUwAreCHZ55xq/ygbKbAOklhr4hCESuKYdcBuMJ3/tL6D3Ctr/JaViGVWv5HwjJkZ4u4+NY2chxFqBSxq73bZRA+K6TgF10Ht+Bg9OBD07R4SrGhg2BadtOLt/lO7y5F4Qu3ZeF7wc4UNsGKc/B4Qh3wGO8/8YR5ipZ3FDsNzI+6jT4PQv1Y76IFH5quixwcOBbG6ddVG2CmW0vEu0Qq6jCTojobfbmvNXffaczZ58hFSi79DWPpXU=
