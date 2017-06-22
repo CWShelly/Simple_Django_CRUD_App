@@ -14,7 +14,7 @@ from .models import Book
 # Create your views here.
 class IndexView(generic.ListView):
     template_name = 'index.html'
-    context_object_name = 'latest_question_list'
+    context_object_name = 'lql'
 
     def get_queryset(self):
         return Book.objects.all()
@@ -37,7 +37,7 @@ class UpdateView(UpdateView):
     template_name = 'books_update_form.html'
     model=Book
     pub_date=timezone.now()
-    fields=['title']
+    fields=['car_text']
     template_name_suffix = '_update_form'
 
 class DeleteView(DeleteView):

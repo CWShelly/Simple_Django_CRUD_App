@@ -1,12 +1,12 @@
 Your Library of Books
 
   <a href="add.html">Add book</a>
-{% if lql %}
+{% if latest_question_list %}
 
 
 
 <ul>
- {% for book in lql %}
+ {% for book in latest_question_list %}
 <li><a href="{% url 'simpleapp:detail' book.id %}">{{book.title}}: Details</a> <a href="{% url 'simpleapp:books_update_form' book.id %}"> Update</a><a href="{% url 'simpleapp:book_confirm_delete' book.id %}">      Delete</a>
 </li>
 
@@ -14,5 +14,5 @@ Your Library of Books
 </ul>
 
  {% else %}
- <p>You don't have any books.</p>
+ <p id="no">No</p>
    {% endif %}
