@@ -4,8 +4,8 @@ from selenium.webdriver.common.keys import Keys
 # browser = webdriver.Chrome()
 # browser.get('http://google.com')
 # browser.quit()
+# dr = webdriver.PhantomJS()
 
-# Create your tests here.
 from .models import Book
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -26,7 +26,9 @@ class AdminTestCase(LiveServerTestCase):
         email="admin@example.com"
         )
 
-        self.selenium = webdriver.Chrome()
+        # self.selenium = webdriver.Chrome()
+
+        self.selenium = webdriver.PhantomJS()
         self.selenium.maximize_window()
         super(AdminTestCase, self).setUp()
 
@@ -95,7 +97,7 @@ class AdminTestCase(LiveServerTestCase):
         self.assertIn('No', p.text)
 
 
- 
+
 
 class BookTestCase(TestCase):
     def setUp(self):
