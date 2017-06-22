@@ -20,5 +20,5 @@ from simpleproject.views import root_page
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', root_page),
-    url(r'^books/', include('books.urls'))
+    url(r'^books/', include('books.urls', namespace="books"))
 ]
