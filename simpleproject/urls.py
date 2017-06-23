@@ -17,8 +17,18 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from simpleproject.views import root_page
 
+#
+from rest_framework.urlpatterns import format_suffix_patterns
+from books import views
+from books.models import Book
+#
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', root_page),
-    url(r'^books/', include('books.urls', namespace="books"))
+    url(r'^books/', include('books.urls', namespace="books")),
+    url(r'^listbooks/$', views.BookList.as_view()),
+    url(r'^bookdetail/(?P<pk>[0-9]+)/$', views.BookDetail.as_view())
 ]
+
+urlpatterns=format_suffix_patterns(urlpatterns)

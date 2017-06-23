@@ -94,7 +94,7 @@ class AdminTestCase(LiveServerTestCase):
         body = self.selenium.find_element_by_tag_name('body')
         self.assertIn('Add', body.text)
         p = self.selenium.find_element_by_id('no')
-        self.assertIn('No', p.text)
+        self.assertIn('No Books', p.text)
 
 
 
@@ -115,7 +115,7 @@ class BookIndexViewTests(TestCase):
     def test_no_titles(self):
         response = self.client.get(reverse('books:index'))
         self.assertEqual(response.status_code,200)
-        self.assertContains(response, 'No')
+        self.assertContains(response, 'No Books')
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
     def test_index_view_with_a_past_title(self):
