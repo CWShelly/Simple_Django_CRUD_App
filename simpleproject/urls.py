@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', root_page),
     url(r'^books/', include('books.urls', namespace="books")),
-    url(r'^listbooks/$', views.BookList.as_view()),
+    url(r'^listbooks/$', views.BookList.as_view(), name="listbooks"),
     url(r'^bookdetail/(?P<pk>[0-9]+)/$', views.BookDetail.as_view())
 ]
 
