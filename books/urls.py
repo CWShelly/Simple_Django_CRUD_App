@@ -3,7 +3,7 @@ from . import views
 
 from .models import Book
 
-app_name="simpleapp"
+app_name="books"
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name="index"),

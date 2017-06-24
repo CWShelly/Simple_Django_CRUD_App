@@ -5,6 +5,10 @@ from selenium.webdriver.common.keys import Keys
 # browser.get('http://google.com')
 # browser.quit()
 # dr = webdriver.PhantomJS()
+from rest_framework.test import APIRequestFactory, APITestCase
+
+factory = APIRequestFactory()
+request = factory.post('/listbooks/', {'title': 'new idea'}, format='json')
 
 from .models import Book
 from django.urls import reverse
@@ -16,6 +20,17 @@ from selenium.webdriver.common.by import By
 
 def create_title(title):
     return Book.objects.create(title=title)
+
+class APITest(APITestCase):
+    def test_create_book(self):
+        url = reverse('listbooks')
+        data = {'title': 'test title'}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Book.objects.count(), 1)
+        self.assertEqual(Book.objects.get().title, 'test title')
+
+
 
 
 class AdminTestCase(LiveServerTestCase):
@@ -94,7 +109,7 @@ class AdminTestCase(LiveServerTestCase):
         body = self.selenium.find_element_by_tag_name('body')
         self.assertIn('Add', body.text)
         p = self.selenium.find_element_by_id('no')
-        self.assertIn('No', p.text)
+        self.assertIn('No Books', p.text)
 
 
 
@@ -115,7 +130,7 @@ class BookIndexViewTests(TestCase):
     def test_no_titles(self):
         response = self.client.get(reverse('books:index'))
         self.assertEqual(response.status_code,200)
-        self.assertContains(response, 'No')
+        self.assertContains(response, 'No Books')
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
     def test_index_view_with_a_past_title(self):
