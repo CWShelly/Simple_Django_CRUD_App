@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 # browser.get('http://google.com')
 # browser.quit()
 # dr = webdriver.PhantomJS()
+import json
 from rest_framework.test import APIRequestFactory, APITestCase
 
 factory = APIRequestFactory()
@@ -18,17 +19,72 @@ from .views import *
 # c = Client()
 from selenium.webdriver.common.by import By
 
+
+# print(json.dumps({'4':5, '6':7}), sort_keys=True,indent=4)
+
+
 def create_title(title):
     return Book.objects.create(title=title)
 
 class APITest(APITestCase):
     def test_create_book(self):
         url = reverse('listbooks')
+        # url='/listbooks/'
         data = {'title': 'test title'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Book.objects.count(), 1)
         self.assertEqual(Book.objects.get().title, 'test title')
+        self.assertEqual(Book.objects.get().id, 1)
+        data = {'x': 'test title'}
+        response = self.client.post(url, data, format='json')
+        self.assertNotEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        view = BookDetail.as_view()
+        request = factory.get('/bookdetail/1')
+        response = view(request, pk='1')
+        response.render()
+
+        self.assertEqual(response.content, b'{"id":1,"title":"test title"}')
+
+
+        view = BookList.as_view()
+        request = factory.post('/booklist', {'title': 'new idea'}, format='json')
+        response = view(request)
+        response.render()
+        print(response.content)
+
+        self.assertEqual(Book.objects.count(), 2)
+
+
+        view = BookDetail.as_view()
+        request = factory.put('/bookdetail/1', {'title': 'put book'}, format='json')
+        response = view(request, pk='1')
+        response.render()
+
+        self.assertEqual(response.content, b'{"id":1,"title":"put book"}')
+        self.assertEqual(Book.objects.count(), 2)
+
+        view = BookDetail.as_view()
+        request = factory.delete('/bookdetail/2')
+        response = view(request, pk='2')
+        response.render()
+ 
+        self.assertEqual(Book.objects.count(), 1)
+
+
+#
+
+
+
+
+
+
+
+
+
+
 
 
 
