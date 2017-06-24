@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^$', root_page),
     url(r'^books/', include('books.urls', namespace="books")),
     url(r'^listbooks/$', views.BookList.as_view(), name="listbooks"),
-    url(r'^bookdetail/(?P<pk>[0-9]+)/$', views.BookDetail.as_view())
+    url(r'^bookdetail/(?P<pk>[0-9]+)/$', views.BookDetail.as_view(), name="bookdetail")
 ]
 
 urlpatterns=format_suffix_patterns(urlpatterns)
