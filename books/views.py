@@ -3,11 +3,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import BookSerializer
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .serializers import BookSerializer
-
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
@@ -70,16 +65,6 @@ class BookDetail(APIView):
 
 
 # Create your views here.
-
-class BookList(APIView):
-    def get(self):
-        books = Book.objects.all()
-        serializer = BookSerializer(books, many=true)
-        return Response(serializer.data)
-
-    def post(self):
-        pass
-
 class IndexView(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'latest_question_list'
