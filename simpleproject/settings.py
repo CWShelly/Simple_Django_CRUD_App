@@ -26,18 +26,17 @@ SECRET_KEY ="ZI3wcyNebVv9llpabPzQbdqMPh4K0l8bY9Xu865VeTU5eowh2iH+atdiKTsgYpw2EKR
 # print(SECRET_KEY)
 
 
-
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
-# ALLOWED_HOSTS = []
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +48,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,6 +58,22 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:5555'
+)
+
+CSRF_TRUSTED_ORIGINS = (
+    'localhost:5555'
+)
+
+
+
+
+
 
 ROOT_URLCONF = 'simpleproject.urls'
 
@@ -108,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
- 
+
 
 
 # Internationalization
