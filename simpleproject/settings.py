@@ -29,7 +29,7 @@ SECRET_KEY ="ZI3wcyNebVv9llpabPzQbdqMPh4K0l8bY9Xu865VeTU5eowh2iH+atdiKTsgYpw2EKR
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
 # ALLOWED_HOSTS = []
