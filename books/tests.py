@@ -30,11 +30,12 @@ class APITest(APITestCase):
     def test_create_book(self):
         url = reverse('listbooks')
         # url='/listbooks/'
-        data = {'title': 'test title'}
+        data = {'title': 'test title', 'author':'test author'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Book.objects.count(), 1)
         self.assertEqual(Book.objects.get().title, 'test title')
+        self.assertEqual(Book.objects.get().author, 'test author')
         self.assertEqual(Book.objects.get().id, 1)
         data = {'x': 'test title'}
         response = self.client.post(url, data, format='json')
@@ -45,8 +46,9 @@ class APITest(APITestCase):
         request = factory.get('/bookdetail/1')
         response = view(request, pk='1')
         response.render()
+        print (response.content)
 
-        self.assertEqual(response.content, b'{"id":1,"title":"test title"}')
+        self.assertEqual(response.content, b'{"id":1,"title":"test title","author":"test author"}')
 
 
         view = BookList.as_view()
@@ -59,18 +61,18 @@ class APITest(APITestCase):
 
 
         view = BookDetail.as_view()
-        request = factory.put('/bookdetail/1', {'title': 'put book'}, format='json')
+        request = factory.put('/bookdetail/1', {'title': 'put book', 'author':'put author'}, format='json')
         response = view(request, pk='1')
         response.render()
 
-        self.assertEqual(response.content, b'{"id":1,"title":"put book"}')
+        self.assertEqual(response.content,  b'{"id":1,"title":"put book","author":"put author"}')
         self.assertEqual(Book.objects.count(), 2)
 
         view = BookDetail.as_view()
         request = factory.delete('/bookdetail/2')
         response = view(request, pk='2')
         response.render()
- 
+
         self.assertEqual(Book.objects.count(), 1)
 
 

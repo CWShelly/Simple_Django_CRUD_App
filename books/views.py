@@ -84,13 +84,13 @@ class AddView(CreateView):
     template_name = 'add.html'
     model=Book
     pub_date=timezone.now()
-    fields=['title']
+    fields=['title', 'author']
 
 class UpdateView(UpdateView):
     template_name = 'books_update_form.html'
     model=Book
     pub_date=timezone.now()
-    fields=['title']
+    fields=['title', 'author']
     template_name_suffix = '_update_form'
 
 class DeleteView(DeleteView):
