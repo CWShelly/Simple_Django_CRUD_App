@@ -1,3 +1,7 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'books/css/style.css' %}"/>
+
+
 Your Library of Books
 
   <a href="add.html">Add book</a>
@@ -5,13 +9,13 @@ Your Library of Books
 
 
 
-<ul>
+<ol>
  {% for book in latest_question_list %}
 <li><a href="{% url 'books:detail' book.id %}">{{book.title}}: Details</a> <a href="{% url 'books:books_update_form' book.id %}"> Update</a><a href="{% url 'books:book_confirm_delete' book.id %}">      Delete</a>
 </li>
 
 {% endfor %}
-</ul>
+</ol>
 
  {% else %}
  <p id="no">No Books</p>

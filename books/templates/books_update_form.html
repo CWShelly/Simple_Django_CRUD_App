@@ -1,4 +1,7 @@
-<div>update this</div>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'books/css/style.css' %}"/>
+
+ 
 <form action="" method="post">{% csrf_token %}
     <p>Update "{{ book.title }}"?</p>
     {{ form.as_p }}
