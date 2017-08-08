@@ -1,4 +1,4 @@
 from django.http import HttpResponse
 
 def root_page(request):
-    return HttpResponse("The Root home page for Simple Project")
+    return HttpResponse("Go to:  http://127.0.0.1:8000/books/")
